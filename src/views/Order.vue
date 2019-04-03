@@ -27,9 +27,10 @@
                         <input type="text" v-model="product.productName" placeholder="Wpisz nazwę produktu">
                         <input type="text" v-model="product.productId" placeholder="Wpisz kod produktu">
                         <input type="text" v-model="product.productQuantity" placeholder="Wpisz ilość">
+                        <button @click="removeProductRow(index)" class="remove-row"><i class="fas fa-trash-alt"></i></button>
                     </div>
 
-                    <button @click.prevent:="addProductRow">Dodaj produkt</button>
+                    <button @click="addProductRow" class="add-row">Dodaj produkt</button>
                 </div>
                 
                 <button type="submit" class="btn-order">Wyślij zamówienie</button>
@@ -44,38 +45,39 @@
 import axios from 'axios'
 
 export default {
-  name: 'order',
-  data: function () {
-      return {
-        orders: {
-          name: '',
-          email: '',
-          address: '',
-          products: [{}]
+    name: 'order',
+    data: function () {
+        return {
+            orders: {
+                name: '',
+                email: '',
+                address: '',
+                products: [{}]
+            }
         }
-      }
-  },
-  methods: {
-    addProductRow(event) {
-      event.preventDefault()
-
-      this.orders.products.push({})
     },
-    postOrder(event) {
-      event.preventDefault()
+    methods: {
+        addProductRow() {
+            this.orders.products.push({})
+        },
+        removeProductRow(index) {
+            this.orders.products.splice(index, 1)
+        },
+        postOrder(event) {
+            event.preventDefault()
 
-      console.log(JSON.stringify(this.orders))
+            console.log(JSON.stringify(this.orders))
 
-      let proxy = 'https://cors-anywhere.herokuapp.com/'
+            let proxy = 'https://cors-anywhere.herokuapp.com/'
 
-      axios.post('https://dakotha-faberlic-app.firebaseio.com/order', this.orders)
-        .then((res) => {
-          console.log('Zamówienie zapisane w bazie danych.')
-        }).catch((error) => {
-          console.log(error)
-        })
+            axios.post('https://dakotha-faberlic-app.firebaseio.com/order', this.orders)
+                .then((res) => {
+                console.log('Zamówienie zapisane w bazie danych.')
+                }).catch((error) => {
+                console.log(error)
+            })
+        }
     }
-  }
 }
 </script>
 
@@ -89,10 +91,6 @@ export default {
 }
 
 .form {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-
     input {
         margin-left: 5rem;
         padding: 1rem 0;
@@ -109,14 +107,14 @@ export default {
         }
 
         &:focus {
-            border: none !important;
+            border: none;
         }
     }
 
     .form-column {
         display: flex;
         flex-direction: column;
-        padding-top: 10rem;
+        padding-top: 15rem;
         
         label {
             margin: 1rem 0;
@@ -134,24 +132,58 @@ export default {
                 font-size: 1.6rem;
             }
         }
+
+        button.add-row {
+            display: inline-block;
+            margin: 1rem 5rem;
+            padding: 1rem 2rem;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            width: 15rem;
+            cursor: pointer;
+        }
+
+        button.remove-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 3rem;
+            height: 3rem;
+            border: none;
+            background-color: transparent;
+            font-size: 3rem;
+            color: #f64747;
+            cursor: pointer;
+            outline: none;
+        }
     }
 
-    button {
-        margin: 5rem auto;
-        // padding: 1rem 2rem;
+    button.btn-order {
+        margin: 10rem 0;
+        border: none;
+        outline: none;
+        cursor: pointer;
     }
 }
 
 .form-row {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 
     input {
-        // margin-left: 5rem;
+        margin: 1rem;
+        padding-left: 1rem;
         font-size: 2rem;
-        // border: none;
-        // border-bottom: 1px solid lightgrey;
-        // outline: none;
+        border: 1px solid #ccc;
+
+        &:focus {
+            border: 1px solid #ccc;
+        }
+
+        &:first-child {
+            flex-grow: 2;
+        }
     }
 }
 </style>
