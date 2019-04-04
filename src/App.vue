@@ -17,9 +17,7 @@ export default {
 }
 </script>
 
-
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 *,
@@ -35,7 +33,7 @@ html {
 }
 
 body {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     font-weight: 400;
     color: #333333;
@@ -44,7 +42,6 @@ body {
 
 h2 {
     margin: 5rem 0 0;
-    font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -52,7 +49,6 @@ h2 {
 
 h3 {
     margin: 2rem 0;
-    font-family: 'Montserrat', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -66,25 +62,30 @@ h3 {
 
 p.subtitle {
     margin: 3rem 0;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6rem;
+    text-align: center;
+    line-height: 2.4rem;
 }
 
 .btn-order {
-    padding: 2rem 4rem;
-    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    padding: 2rem 6rem;
     font-size: 1.8rem;
     font-weight: 700;
     color: #ffffff;
     text-decoration: none;
     text-transform: uppercase;
     background-color: #87d37c;
+    border: none;
     border-radius: 10px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, .3);
+    box-shadow: 4px 8px 20px rgba(0, 0, 0, .25);
     z-index: 10;
 
     &:hover {
         background-color: #76c26b;
+    }
+
+    &:active {
+        top: .3rem;
     }
 }
 </style>

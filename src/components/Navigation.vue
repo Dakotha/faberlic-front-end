@@ -2,7 +2,9 @@
     <header class="navigation-wrapper">
         <nav class="navigation-top container">
             <div class="navigation-top__logo">
-                Faberlic Zenobia Bednarowicz
+                <a href="/">
+                    <span>Faberlic</span><span class="navigation-top__logo-dot"></span>Zenobia Bednarowicz
+                </a>
             </div>
 
             <div class="navigation-top__menu">
@@ -17,7 +19,7 @@
 <style lang="scss">
 .navigation-wrapper {
     background-color: #ffffff;
-    box-shadow: 1px 1px 6px rgba(0, 0, 0, .05);
+    // box-shadow: 1px 1px 6px rgba(0, 0, 0, .05);
 }
 
 .navigation-top {
@@ -28,14 +30,30 @@
 
 
     &__logo {
+        a {
+            font-size: 1.8rem;
+            text-decoration: none;
+            color: #333333;
+        }
 
+        span:first-child {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        &-dot {
+            display: inline-block;
+            margin: 0 .3rem;
+            width: .5rem;
+            height: .5rem;
+            background-color: #f64747;
+        }
     }
 
     &__menu {
         display: flex;
 
-        & a {
-            font-family: 'Montserrat', sans-serif;
+        a {
             font-size: 1.4rem;
             font-weight: 700;
             color: #666666;
@@ -47,6 +65,10 @@
             }
 
             &:hover {
+                color: #333333;
+            }
+
+            &.router-link-exact-active {
                 color: #333333;
             }
         }

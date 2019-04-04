@@ -3,7 +3,6 @@
 
         <section class="order">
             <div class="order__bg"></div>
-            <!-- <a href="/zamowienie">Złóż zamówienie</a> -->
             <router-link to="/zamowienie" class="btn-order">Złóż zamówienie</router-link>
         </section>
 
@@ -11,19 +10,19 @@
             <div class="how container">
 
                 <h2>Jak złożyć zamówienie?</h2>
-                <p class="subtitle">Zamówienie złożysz w trzech prostych krokach. Najedź kursorem na kafelek poniżej, aby przeczytać więcej informacji.</p>
+                <p class="subtitle">Zamówienie złożysz w trzech prostych krokach.<br>Najedź kursorem myszy na kafelek poniżej, aby przeczytać więcej informacji.</p>
 
                 <div class="how__box-wrapper">
                     <div class="how__box">
                         <div class="how__box-counter">1</div>
 
                         <div class="how__box-front">
-                            <h3>Kliknij przycisk "Złóź zamówienie"</h3>
+                            <h3>Kliknij przycisk<br>"Złóż zamówienie"</h3>
                             <i class="fas fa-directions"></i>
                         </div>
 
                         <div class="how__box-back">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam facere veniam officiis dolorem excepturi inventore laborum? Autem nesciunt, quos architecto, cum accusantium iste modi quasi, provident aspernatur adipisci veritatis corporis?</p>
+                            <p>Na stronie znajdują się aż trzy przyciski "Złóż zamówienie". Pierwszy znajdziesz w górnym menu strony. Drugi poniżej górnego menu, w dużej sekcji z banerem. I kolejny przycisk poniżej tego kafelka.</p>
                         </div>
                     </div>
 
@@ -31,12 +30,12 @@
                         <div class="how__box-counter">2</div>
 
                         <div class="how__box-front">
-                            <h3>Wypełnij prosty formularz</h3>
+                            <h3>Wypełnij prosty<br>formularz</h3>
                             <i class="fas fa-directions"></i>
                         </div>
 
                         <div class="how__box-back">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam facere veniam officiis dolorem excepturi inventore laborum? Autem nesciunt, quos architecto, cum accusantium iste modi quasi, provident aspernatur adipisci veritatis corporis?</p>
+                            <p>Po kliknięciu w przycisk "Złóż zamówienie" zostaniesz przeniesiona na stronę z formularzem. Formularz jest dobrze opisany i wystarczy podążać za wskazówkami.</p>
                         </div>
                     </div>
 
@@ -44,12 +43,12 @@
                         <div class="how__box-counter">3</div>
 
                         <div class="how__box-front">
-                            <h3>Potwierdź złożenie zamówienia</h3>
+                            <h3>Potwierdź złożenie<br>zamówienia</h3>
                             <i class="fas fa-directions"></i>
                         </div>
 
                         <div class="how__box-back">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam facere veniam officiis dolorem excepturi inventore laborum? Autem nesciunt, quos architecto, cum accusantium iste modi quasi, provident aspernatur adipisci veritatis corporis?</p>
+                            <p>Jest to bardzo ważna cześć. Po złożeniu zamówienia, program wyświetli nr tego zamówienia (numer zamówienia otrzymasz także na podany w formularzu adres email)<br>Skopiuj lub zapisz numer zamówienia i potwierdź zamówienie poprzez wysłanie tego numeru w wiadomości prywatnej na facebook'u lub w wiadomości email.</p>
                         </div>
                     </div>
                 </div>
@@ -63,13 +62,30 @@
         <section class="newsletter">
 
             <h2>Zapisz się na newsletter</h2>
-            <p class="subtitle">Dzięki newsletter'owi zawsze na czas dowiesz się o nowych produktach, katalogach i wydarzeniach.</p>
+            <p class="subtitle">Dzięki newsletter'owi zawsze na czas dowiesz się o nowych produktach, katalogach i wydarzeniach.<br>Podaj swój adres email, a wszystkie wiadomości będziesz otrzymywać prosto do skrzynki pocztowej.</p>
 
-            <input type="text" placeholder="Wpisz swój adres email">
+            <div class="newsletter__form">
+                <input type="text" placeholder="Wpisz swój adres email">
+                <button @click="newsletterSend">Wyślij</button>
+                <!-- <i class="fas fa-share"></i> -->
+            </div>
         </section>
 
     </main>
 </template>
+
+<script>
+import axios from 'axios'
+
+export default {
+    methods: {
+        newsletterSend() {
+            //axios post request
+        }
+    }
+}
+</script>
+
 
 <style lang="scss">
 // Order section
@@ -78,7 +94,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 30rem;
+    height: 40rem;
 
     position: relative;
     // Photo by rawpixel.com from Pexels
@@ -102,6 +118,7 @@
 .how-wrapper {
     padding-top: 5rem;
     background-color: rgba(0, 0, 0, .05);
+    border-bottom: 1px solid rgba(0, 0, 0, .04);
 }
 
 .how {
@@ -120,7 +137,7 @@
 
     &__box {
         position: relative;
-        height: 30rem;
+        height: 35rem;
         width: 33.333333%;
         perspective: 1000px;
         border-radius: 5px;
@@ -142,7 +159,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Montserrat', sans-serif;
             font-size: 4rem;
             font-weight: 700;
             color: #ffffff;
@@ -202,8 +218,8 @@
 
     & img {
         position: absolute;
-        top: 80%;
-        left: 20rem;
+        top: 82%;
+        left: 19rem;
         width: 213px;
         height: 80px;
     }
@@ -224,11 +240,22 @@
     height: 50rem;
     padding-top: 8rem;
 
-    input {
+    &__form {
+        display: flex;
         margin-top: 5rem;
-        padding: 2rem;
-        height: 5rem;
-        width: 40rem;
+
+        input {
+            padding: 2rem;
+            height: 5rem;
+            width: 40rem;
+            font-size: 1.6rem;
+            outline: none;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            cursor: pointer;
+        }
     }
 }
 // End of Newsletter section

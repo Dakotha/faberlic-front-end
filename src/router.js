@@ -6,18 +6,21 @@ import Order from './views/Order.vue'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
+    mode: 'history',
+    base: process.env.BASE_URL,
+    scrollBehavior(to, from, savedPosition) {
+        return { x: 0, y: 0 }
     },
-    {
-      path: '/zamowienie',
-      name: 'order',
-      component: Order
-    }
-  ]
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },
+        {
+            path: '/zamowienie',
+            name: 'order',
+            component: Order
+        }
+    ]
 })

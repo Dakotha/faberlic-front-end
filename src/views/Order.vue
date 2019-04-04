@@ -16,12 +16,12 @@
                 </div>
 
                 <div class="form-column">
-                    <label for="address"><span>3</span><i class="fas fa-angle-double-right"></i>Podaj proszę adres do wysyłki Twojego zamówienia.</label>
+                    <label for="address"><span>3</span><i class="fas fa-angle-double-right"></i>Podaj adres do wysyłki Twojego zamówienia.</label>
                     <input type="text" id="address" v-model="orders.address" placeholder="Wpisz adres do wysyłki zamówienia">
                 </div>
 
                 <div class="form-column">
-                    <label for="products"><span>4</span><i class="fas fa-angle-double-right"></i>Podaj kod produktu</label>
+                    <label for="products"><span>4</span><i class="fas fa-angle-double-right"></i>Podaj nazwy i kody produktów</label>
 
                     <div class="form-row" v-for="(product, index) in orders.products" :key="index">
                         <input type="text" v-model="product.productName" placeholder="Wpisz nazwę produktu">
@@ -94,7 +94,6 @@ export default {
     input {
         margin-left: 5rem;
         padding: 1rem 0;
-        font-family: 'Montserrat', sans-serif;
         font-size: 3rem;
         color: #666666;
         background-color: transparent;
@@ -118,7 +117,6 @@ export default {
         
         label {
             margin: 1rem 0;
-            font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
             color: #666666;
