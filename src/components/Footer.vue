@@ -24,5 +24,9 @@ footer {
     font-size: 1.4rem;
     color: #666666;
     background-color: #000000;
+
+    p {
+        text-align: center;
+    }
 }
 </style>

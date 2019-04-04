@@ -45,6 +45,7 @@ h2 {
     font-size: 3rem;
     font-weight: 700;
     text-transform: uppercase;
+    text-align: center;
 }
 
 h3 {
@@ -52,18 +53,20 @@ h3 {
     font-size: 1.8rem;
     font-weight: 700;
     text-transform: uppercase;
-}
-
-// Helpers
-.container {
-    margin: 0 auto;
-    width: 114rem;
+    text-align: center;
 }
 
 p.subtitle {
     margin: 3rem 0;
     text-align: center;
     line-height: 2.4rem;
+}
+
+// Helpers
+.container {
+    margin: 0 auto;
+    max-width: 114rem;
+    // width: 114rem;
 }
 
 .btn-order {

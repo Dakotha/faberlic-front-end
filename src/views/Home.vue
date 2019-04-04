@@ -67,7 +67,6 @@
             <div class="newsletter__form">
                 <input type="text" placeholder="Wpisz swój adres email">
                 <button @click="newsletterSend">Wyślij</button>
-                <!-- <i class="fas fa-share"></i> -->
             </div>
         </section>
 
@@ -228,6 +227,22 @@ export default {
         margin: 5rem 0;
     }
 }
+
+@media screen and (max-width: 960px) {
+    .how__box-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .how__box {
+        margin-bottom: 10rem;
+        width: 80%;
+    }
+
+    .how img {
+        display: none;
+    }
+}
 // End of How section
 
 
@@ -237,8 +252,8 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 50rem;
     padding-top: 8rem;
+    margin-bottom: 10rem;
 
     &__form {
         display: flex;
@@ -257,6 +272,12 @@ export default {
             cursor: pointer;
         }
     }
+
+@media screen and (max-width: 600px) {
+    .newsletter__form input {
+        width: 25rem;
+    }
+}
 }
 // End of Newsletter section
 </style>

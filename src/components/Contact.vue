@@ -17,9 +17,9 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 5rem;
 
     a {
+        margin: 2rem 0;
         font-size: 1.4rem;
         color: #ffffff;
         text-decoration: none;
@@ -28,6 +28,12 @@
     & i {
         margin: 0 1rem;
         font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .contact-wrapper {
+        display: none;
     }
 }
 </style>

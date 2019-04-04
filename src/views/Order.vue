@@ -184,5 +184,41 @@ export default {
         }
     }
 }
+
+@media screen and (max-width: 1140px) {
+    .order-form-wrapper {
+        padding: 0 2rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form-column label span,
+    .form-column label i {
+        display: none;
+    }
+
+    .form-column {
+        align-items: center;
+    }
+
+    .form .form-column label {
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    .form input {
+        font-size: 2.5rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+}
 </style>
 

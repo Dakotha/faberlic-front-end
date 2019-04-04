@@ -27,9 +27,13 @@
     justify-content: space-between;
     align-items: center;
     height: 7rem;
+    margin: 0;
+    width: 100%;
 
 
-    &__logo {
+    &__logo { 
+        text-align: center;
+        
         a {
             font-size: 1.8rem;
             text-decoration: none;
@@ -72,6 +76,23 @@
                 color: #333333;
             }
         }
+    }
+}
+
+
+@media screen and (max-width: 1140px) {
+    .navigation-top {
+        padding: 0 2rem;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .navigation-top__menu {
+        display: none;
+    }
+
+    .navigation-top {
+        justify-content: center;
     }
 }
 </style>
