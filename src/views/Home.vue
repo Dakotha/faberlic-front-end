@@ -31,7 +31,7 @@
 
                         <div class="how__box-front">
                             <h3>Wypełnij prosty<br>formularz</h3>
-                            <i class="fas fa-directions"></i>
+                            <i class="fas fa-align-justify"></i>
                         </div>
 
                         <div class="how__box-back">
@@ -44,7 +44,7 @@
 
                         <div class="how__box-front">
                             <h3>Potwierdź złożenie<br>zamówienia</h3>
-                            <i class="fas fa-directions"></i>
+                            <i class="fas fa-paper-plane"></i>
                         </div>
 
                         <div class="how__box-back">
@@ -189,6 +189,7 @@ export default {
 
             & i {
                 font-size: 10rem;
+                color: #666666;
             }
         }
 
