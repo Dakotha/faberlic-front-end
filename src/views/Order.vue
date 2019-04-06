@@ -66,15 +66,15 @@ export default {
         postOrder(event) {
             event.preventDefault()
 
-            console.log(JSON.stringify(this.orders))
+            // console.log(JSON.stringify(this.orders))
 
-            let proxy = 'https://cors-anywhere.herokuapp.com/'
+            // let proxy = 'https://cors-anywhere.herokuapp.com/'
 
-            axios.post('https://dakotha-faberlic-app.firebaseio.com/order', this.orders)
+            axios.post('localhost:3000/order', this.orders)
                 .then((res) => {
-                console.log('Zamówienie zapisane w bazie danych.')
+                    console.log('Zamówienie zapisane w bazie danych.')
                 }).catch((error) => {
-                console.log(error)
+                    console.log(error)
             })
         }
     }
