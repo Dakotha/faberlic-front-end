@@ -65,7 +65,7 @@
             <p class="subtitle">Dzięki newsletter'owi zawsze na czas dowiesz się o nowych produktach, katalogach i wydarzeniach.<br>Podaj swój adres email, a wszystkie wiadomości będziesz otrzymywać prosto do skrzynki pocztowej.</p>
 
             <div class="newsletter__form">
-                <input type="text" placeholder="Wpisz swój adres email">
+                <input v-model="newsletter" type="text" placeholder="Wpisz swój adres email">
                 <button @click="newsletterSend">Wyślij</button>
             </div>
         </section>
@@ -75,11 +75,36 @@
 
 <script>
 import axios from 'axios'
+import validator from 'validator'
+import swal from 'sweetalert'
 
 export default {
+    data: function () {
+        return {
+            newsletter: ''
+        }
+    },
     methods: {
         newsletterSend() {
-            //axios post request
+            // if (!validator.isEmail(this.newsletter)) {
+            //     swal({
+            //         title: 'Czy jesteś pewna?',
+            //         text: 'Wygląda na to, że podałaś niewłaściwy adres email.',
+            //         icon: 'warning',
+            //         dangerMode: true
+            //     })
+
+            //     return false
+            // }
+            
+            axios.post('http://api.faberlic.ostroleka.pl/newsletter', { "email": "test@test.pl" },).then((response) => {
+                swal("Dziękuję!", "Zapisałam Twój adres email.", "success");
+                console.log(`Odpowiedz: ${response}`)
+            }).catch((err) => {
+                console.log(err)
+                swal("Upss", "Newsletter nie działa. Spróbuj proszę później.", "warning");
+                return false
+            })
         }
     }
 }

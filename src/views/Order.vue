@@ -70,7 +70,7 @@ export default {
 
             // let proxy = 'https://cors-anywhere.herokuapp.com/'
 
-            axios.post('localhost:3000/order', this.orders)
+            axios.post('/order', this.orders)
                 .then((res) => {
                     console.log('Zamówienie zapisane w bazie danych.')
                 }).catch((error) => {
