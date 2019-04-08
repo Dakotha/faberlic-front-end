@@ -86,24 +86,23 @@ export default {
     },
     methods: {
         newsletterSend() {
-            // if (!validator.isEmail(this.newsletter)) {
-            //     swal({
-            //         title: 'Czy jesteś pewna?',
-            //         text: 'Wygląda na to, że podałaś niewłaściwy adres email.',
-            //         icon: 'warning',
-            //         dangerMode: true
-            //     })
+            if (!validator.isEmail(this.newsletter)) {
+                swal({
+                    title: 'Czy jesteś pewna?',
+                    text: 'Wygląda na to, że podałaś niewłaściwy adres email.',
+                    icon: 'warning',
+                    dangerMode: true
+                })
 
-            //     return false
-            // }
-            
-            axios.post('http://api.faberlic.ostroleka.pl/newsletter', { "email": "test@test.pl" },).then((response) => {
-                swal("Dziękuję!", "Zapisałam Twój adres email.", "success");
-                console.log(`Odpowiedz: ${response}`)
-            }).catch((err) => {
-                console.log(err)
-                swal("Upss", "Newsletter nie działa. Spróbuj proszę później.", "warning");
                 return false
+            }
+            
+            axios.post('http://api.faberlic.ostroleka.pl/newsletter', { "email": this.newsletter },).then((response) => {
+                swal("Dziękuję!", "Zapisałam Twój adres email.", "success");
+                console.log(`Response: ${response}`)
+            }).catch((err) => {
+                swal("Upss", "Newsletter nie działa. Spróbuj proszę później.", "warning")
+                console.log(`Problem: ${err}`)
             })
         }
     }

@@ -16,6 +16,11 @@
                 </div>
 
                 <div class="form-column">
+                    <label for="phone"><span>2</span><i class="fas fa-angle-double-right"></i>Podaj swój numer telefonu.</label>
+                    <input type="text" id="phone" v-model="orders.phone" placeholder="Wpisz swój numer telefonu">
+                </div>
+
+                <div class="form-column">
                     <label for="address"><span>3</span><i class="fas fa-angle-double-right"></i>Podaj adres do wysyłki Twojego zamówienia.</label>
                     <input type="text" id="address" v-model="orders.address" placeholder="Wpisz adres do wysyłki zamówienia">
                 </div>
@@ -51,6 +56,7 @@ export default {
             orders: {
                 name: '',
                 email: '',
+                phone: '',
                 address: '',
                 products: [{}]
             }
@@ -66,15 +72,13 @@ export default {
         postOrder(event) {
             event.preventDefault()
 
-            // console.log(JSON.stringify(this.orders))
-
-            // let proxy = 'https://cors-anywhere.herokuapp.com/'
-
-            axios.post('/order', this.orders)
-                .then((res) => {
-                    console.log('Zamówienie zapisane w bazie danych.')
-                }).catch((error) => {
-                    console.log(error)
+            axios.post('http://api.faberlic.ostroleka.pl/order', this.orders)
+                .then((response) => {
+                    swal('Dziękuję!', `Twój numer zamówienia to: ${response.orderNumber}.`, 'success')
+                    console.log(`Response: ${response.orderNumber}`)
+                }).catch((err) => {
+                    swal("Upss", "Przepraszam, coś poszło nie tak. Spróbuj proszę później.", "warning")
+                    console.log(`Problem: ${err}`)
             })
         }
     }
