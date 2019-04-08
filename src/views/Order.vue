@@ -49,18 +49,22 @@
 <script>
 import axios from 'axios'
 import swal from 'sweetalert'
+import uniqid from 'uniqid'
+import validator from 'validator'
 
 export default {
     name: 'order',
     data: function () {
         return {
             orders: {
+                orderNumber: uniqid.time(),
                 name: '',
                 email: '',
                 phone: '',
                 address: '',
                 products: [{}]
-            }
+            },
+            validator: []
         }
     },
     methods: {
@@ -73,13 +77,13 @@ export default {
         postOrder(event) {
             event.preventDefault()
 
-            axios.post('http://api.faberlic.ostroleka.pl/order', this.orders)
+            axios.post('http://localhost:3000/order', this.orders)
                 .then((response) => {
-                    swal('Dziękuję!', `Twój numer zamówienia to: ${response.orderNumber}.`, 'success')
-                    console.log(`Response: ${response.orderNumber}`)
+                    swal('Dziękuję!', `Twój numer zamówienia to: ${JSON.stringify(response.data)}.`, 'success')
+                    this.$router.push('/') 
                 }).catch((err) => {
                     swal("Upss", "Przepraszam, coś poszło nie tak. Spróbuj proszę później.", "warning")
-                    console.log(`Problem: ${err}`)
+                    console.log(`Problem(C): ${err}`)
             })
         }
     }

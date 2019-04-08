@@ -99,7 +99,6 @@ export default {
             
             axios.post('http://api.faberlic.ostroleka.pl/newsletter', { "email": this.newsletter },).then((response) => {
                 swal("Dziękuję!", "Zapisałam Twój adres email.", "success");
-                console.log(`Response: ${response}`)
             }).catch((err) => {
                 swal("Upss", "Newsletter nie działa. Spróbuj proszę później.", "warning")
                 console.log(`Problem: ${err}`)
