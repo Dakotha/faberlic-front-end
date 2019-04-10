@@ -64,18 +64,38 @@ export default {
                 address: '',
                 products: [{}]
             },
-            validator: []
+            errors: []
         }
     },
     methods: {
         addProductRow() {
             this.orders.products.push({})
         },
+
         removeProductRow(index) {
             this.orders.products.splice(index, 1)
         },
+
+        validator() {
+            this.errors = []
+            if (validator.isEmpty(this.orders.name)) this.errors.push('Podaj proszę swoje imię i nazwisko.')
+            if (!validator.isEmail(this.orders.email)) this.errors.push('Podałaś niewłaściwy adres email.')
+            if (!validator.isNumeric(this.orders.phone)) this.errors.push('Podałaś niewłaściwy numer telefonu.')
+            if (validator.isEmpty(this.orders.address)) this.errors.push('Podaj proszę swój adres.')
+            
+            if (this.errors.length) return false
+
+            return true
+        },
+
         postOrder(event) {
             event.preventDefault()
+
+            if (!this.validator()) {
+                let error = this.errors[0]
+                swal('Mamy jakiś błąd w formularzu.', `${error}`, 'warning')
+                return false
+            }
 
             axios.post('http://localhost:3000/order', this.orders)
                 .then((response) => {
@@ -211,16 +231,22 @@ export default {
     }
 
     .form .form-column label {
+        padding: 0 3rem;
         text-align: center;
         font-size: 1.8rem;
     }
 
     .form input {
-        font-size: 2.5rem;
+        margin: 0;
+        font-size: 2rem;
     }
 
     .form-row {
         flex-direction: column;
+    }
+
+    .form-row input {
+        margin-bottom: 1rem;
     }
 
     .form {

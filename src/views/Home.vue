@@ -297,6 +297,12 @@ export default {
         }
     }
 
+// @media screen and (max-width: 900px) {
+//     .newsletter {
+//         margin: 0 8rem;
+//     }
+// }
+
 @media screen and (max-width: 600px) {
     .newsletter__form input {
         width: 25rem;
