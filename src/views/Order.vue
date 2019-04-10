@@ -68,7 +68,8 @@ export default {
         }
     },
     methods: {
-        addProductRow() {
+        addProductRow(event) {
+            event.preventDefault()
             this.orders.products.push({})
         },
 
@@ -97,7 +98,9 @@ export default {
                 return false
             }
 
-            axios.post('http://api.faberlic.ostroleka.pl/order', this.orders)
+            console.log(JSON.stringify(this.orders))
+
+            axios.post('http://localhost:3000/order', this.orders)
                 .then((response) => {
                     swal('Dziękuję!', `Twój numer zamówienia to: ${JSON.stringify(response.data)}.`, 'success')
                     this.$router.push('/') 
