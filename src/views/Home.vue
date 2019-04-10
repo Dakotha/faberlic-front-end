@@ -65,7 +65,7 @@
             <p class="subtitle">Dzięki newsletter'owi zawsze na czas dowiesz się o nowych produktach, katalogach i wydarzeniach.<br>Podaj swój adres email, a wszystkie wiadomości będziesz otrzymywać prosto do skrzynki pocztowej.</p>
 
             <div class="newsletter__form">
-                <input v-model="newsletter" type="text" placeholder="Wpisz swój adres email">
+                <input v-model="newsletter" type="email" placeholder="Wpisz swój adres email">
                 <button @click="newsletterSend">Wyślij</button>
             </div>
         </section>
@@ -296,18 +296,18 @@ export default {
             cursor: pointer;
         }
     }
+}
 
-// @media screen and (max-width: 900px) {
-//     .newsletter {
-//         margin: 0 8rem;
-//     }
-// }
+@media screen and (max-width: 900px) {
+    .newsletter {
+        padding: 0 2rem;
+    }
+}
 
 @media screen and (max-width: 600px) {
     .newsletter__form input {
         width: 25rem;
     }
-}
 }
 // End of Newsletter section
 </style>

@@ -12,12 +12,12 @@
 
                 <div class="form-column">
                     <label for="email"><span>2</span><i class="fas fa-angle-double-right"></i>Podaj proszę swój adres email.</label>
-                    <input type="text" id="email" v-model="orders.email" placeholder="Wpisz swój adres email">
+                    <input type="email" id="email" v-model="orders.email" placeholder="Wpisz swój adres email">
                 </div>
 
                 <div class="form-column">
                     <label for="phone"><span>2</span><i class="fas fa-angle-double-right"></i>Podaj swój numer telefonu.</label>
-                    <input type="text" id="phone" v-model="orders.phone" placeholder="Wpisz swój numer telefonu">
+                    <input type="number" id="phone" v-model="orders.phone" placeholder="Wpisz swój numer telefonu">
                 </div>
 
                 <div class="form-column">
@@ -31,7 +31,7 @@
                     <div class="form-row" v-for="(product, index) in orders.products" :key="index">
                         <input type="text" v-model="product.productName" placeholder="Wpisz nazwę produktu">
                         <input type="text" v-model="product.productId" placeholder="Wpisz kod produktu">
-                        <input type="text" v-model="product.productQuantity" placeholder="Wpisz ilość">
+                        <input type="number" v-model="product.productQuantity" placeholder="Wpisz ilość">
                         <button @click="removeProductRow(index)" class="remove-row"><i class="fas fa-trash-alt"></i></button>
                     </div>
 
@@ -97,7 +97,7 @@ export default {
                 return false
             }
 
-            axios.post('http://localhost:3000/order', this.orders)
+            axios.post('http://api.faberlic.ostroleka.pl/order', this.orders)
                 .then((response) => {
                     swal('Dziękuję!', `Twój numer zamówienia to: ${JSON.stringify(response.data)}.`, 'success')
                     this.$router.push('/') 
