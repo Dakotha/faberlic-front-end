@@ -66,7 +66,7 @@
 
             <div class="newsletter__form">
                 <input v-model="newsletter" type="email" placeholder="Wpisz swój adres email">
-                <button @click="newsletterSend">Wyślij</button>
+                <button @click="onNewsletter">Wyślij</button>
             </div>
         </section>
 
@@ -85,24 +85,21 @@ export default {
         }
     },
     methods: {
-        newsletterSend() {
+        onNewsletter() {
             if (!validator.isEmail(this.newsletter)) {
-                swal({
-                    title: 'Czy jesteś pewna?',
-                    text: 'Wygląda na to, że podałaś niewłaściwy adres email.',
-                    icon: 'warning',
-                    dangerMode: true
-                })
+                swal('Czy jesteś pewna?', 'Wygląda na to, że podałaś niewłaściwy adres email.', 'warning')
 
                 return false
             }
             
-            axios.post('http://api.faberlic.ostroleka.pl/newsletter', { "email": this.newsletter },).then((response) => {
-                swal("Dziękuję!", "Zapisałam Twój adres email.", "success");
-            }).catch((err) => {
-                swal("Upss", "Newsletter nie działa. Spróbuj proszę później.", "warning")
-                console.log(`Problem: ${err}`)
-            })
+            axios.post('/newsletter', { email: this.newsletter })
+                .then(() => {
+                    swal('Dziękuję!', 'Zapisałam Twój adres email.', 'success');
+                })
+                .catch(err => {
+                    swal('Upss', 'Newsletter nie działa. Spróbuj proszę później.', 'warning')
+                    console.log(err)
+                })
         }
     }
 }

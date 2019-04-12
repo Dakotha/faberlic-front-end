@@ -3,7 +3,7 @@
 
         <div class="order-form-wrapper container">
 
-            <form @submit="postOrder" class="form">
+            <form @submit.prevent="onPostOrder" class="form">
 
                 <div class="form-column">
                     <label for="name"><span>1</span><i class="fas fa-angle-double-right"></i>Cześć, mam na imię Zenobia. Jak Ty się nazywasz?</label>
@@ -32,10 +32,10 @@
                         <input type="text" v-model="product.productName" placeholder="Wpisz nazwę produktu">
                         <input type="text" v-model="product.productId" placeholder="Wpisz kod produktu">
                         <input type="number" v-model="product.productQuantity" placeholder="Wpisz ilość">
-                        <button @click="removeProductRow(index)" class="remove-row"><i class="fas fa-trash-alt"></i></button>
+                        <button @click.prevent="removeProductRow(index)" class="remove-row"><i class="fas fa-trash-alt"></i></button>
                     </div>
 
-                    <button @click="addProductRow" class="add-row">Dodaj produkt</button>
+                    <button @click.prevent="addProductRow" class="add-row">Dodaj produkt</button>
                 </div>
                 
                 <button type="submit" class="btn-order">Wyślij zamówienie</button>
@@ -62,14 +62,17 @@ export default {
                 email: '',
                 phone: '',
                 address: '',
-                products: [{}]
+                products: [{
+                    productName: '',
+                    productId: '',
+                    productQuantity: ''
+                }]
             },
             errors: []
         }
     },
     methods: {
-        addProductRow(event) {
-            event.preventDefault()
+        addProductRow() {
             this.orders.products.push({})
         },
 
@@ -83,30 +86,33 @@ export default {
             if (!validator.isEmail(this.orders.email)) this.errors.push('Podałaś niewłaściwy adres email.')
             if (!validator.isNumeric(this.orders.phone)) this.errors.push('Podałaś niewłaściwy numer telefonu.')
             if (validator.isEmpty(this.orders.address)) this.errors.push('Podaj proszę swój adres.')
+
+            const products = this.orders.products
+            for (product in products) {
+                if (validator.isEmpty(product.productName)) this.errors.push('Podaj name')
+                if (validator.isEmpty(product.productId)) this.errors.push('Podaj id')
+                if (validator.isEmpty(product.productQuantity)) this.errors.push('Podaj quantity')
+            }
             
             if (this.errors.length) return false
 
             return true
         },
 
-        postOrder(event) {
-            event.preventDefault()
-
+        onPostOrder() {
             if (!this.validator()) {
                 let error = this.errors[0]
                 swal('Mamy jakiś błąd w formularzu.', `${error}`, 'warning')
                 return false
             }
 
-            console.log(JSON.stringify(this.orders))
-
-            axios.post('http://localhost:3000/order', this.orders)
-                .then((response) => {
-                    swal('Dziękuję!', `Twój numer zamówienia to: ${JSON.stringify(response.data)}.`, 'success')
-                    this.$router.push('/') 
-                }).catch((err) => {
-                    swal("Upss", "Przepraszam, coś poszło nie tak. Spróbuj proszę później.", "warning")
-                    console.log(`Problem(C): ${err}`)
+            axios.post('/order', this.orders)
+                .then(response => {
+                    swal('Dziękuję!', `Twój numer zamówienia to: ${response.data.orderNumber}`, 'success')
+                    this.$router.replace('/') 
+                }).catch(err => {
+                    swal('Upss', 'Przepraszam, coś poszło nie tak. Spróbuj proszę później.', 'warning')
+                    console.log(err)
             })
         }
     }
