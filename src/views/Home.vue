@@ -84,6 +84,7 @@ export default {
             newsletter: ''
         }
     },
+
     methods: {
         onNewsletter() {
             if (!validator.isEmail(this.newsletter)) {
@@ -130,7 +131,7 @@ export default {
 
     position: relative;
     // Photo by rawpixel.com from Pexels
-    background: url('../assets/img/order-bg.jpg');
+    background: url('../assets/img/faberlic-header.jpg');
     background-size: cover;
     background-position-y: 80%;
 
