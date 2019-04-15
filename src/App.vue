@@ -62,7 +62,6 @@ p.subtitle {
     line-height: 2.4rem;
 }
 
-// Helpers
 .container {
     margin: 0 auto;
     max-width: 114rem;
@@ -90,5 +89,18 @@ p.subtitle {
     &:active {
         top: .3rem;
     }
+}
+
+.swal-text {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.swal-footer {
+    background-color: rgb(245, 248, 250);
+    margin-top: 32px;
+    border-top: 1px solid #E9EEF1;
+    overflow: hidden;
 }
 </style>

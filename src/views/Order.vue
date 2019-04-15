@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../axios'
 import swal from 'sweetalert'
 import uniqid from 'uniqid'
 import validator from 'validator'
@@ -88,12 +88,32 @@ export default {
             if (validator.isEmpty(this.orders.address)) this.errors.push('Podaj proszę swój adres.')
 
             const products = this.orders.products
-            for (product in products) {
-                if (validator.isEmpty(product.productName)) this.errors.push('Podaj name')
-                if (validator.isEmpty(product.productId)) this.errors.push('Podaj id')
-                if (validator.isEmpty(product.productQuantity)) this.errors.push('Podaj quantity')
-            }
             
+            if (products.length == 0) this.errors.push('Dodaj do zamówienia wybrany produkt.')
+            
+            products.forEach(product => {
+                // productName
+                if (!("productName" in product)) {
+                    this.errors.push('Podaj proszę nazwę zamawianego produktu.')
+                } else if (validator.isEmpty(product.productName)) {
+                    this.errors.push('Podaj proszę nazwę zamawianego produktu.')
+                }
+
+                // productId
+                if (!("productId" in product)) {
+                    this.errors.push('Podaj proszę kod zamawianego produktu.')
+                } else if (validator.isEmpty(product.productId)) {
+                    this.errors.push('Podaj proszę kod zamawianego produktu.')
+                }
+
+                // productQuantity
+                if (!("productQuantity" in product)) {
+                    this.errors.push('Podaj proszę ilość zamawianego produktu.')
+                } else if (validator.isEmpty(product.productQuantity)) {
+                    this.errors.push('Podaj proszę ilość zamawianego produktu.')
+                }
+            })
+                      
             if (this.errors.length) return false
 
             return true
@@ -102,16 +122,29 @@ export default {
         onPostOrder() {
             if (!this.validator()) {
                 let error = this.errors[0]
-                swal('Mamy jakiś błąd w formularzu.', `${error}`, 'warning')
+                swal({
+                    title: 'Uwaga!',
+                    text: error,
+                    icon: 'info'
+                })
                 return false
             }
 
             axios.post('/order', this.orders)
                 .then(response => {
-                    swal('Dziękuję!', `Twój numer zamówienia to: ${response.data.orderNumber}`, 'success')
+                    swal({
+                        title: 'Dziękuję!',
+                        // text: 'Na Twoją skrzynkę pocztową wysłałam wiadomość ze szczegółami zamówienia.',
+                        text: 'Twoje zamówienie zostało przyjęte do realizacji.',
+                        icon: 'success'
+                    })
                     this.$router.replace('/') 
                 }).catch(err => {
-                    swal('Upss', 'Przepraszam, coś poszło nie tak. Spróbuj proszę później.', 'warning')
+                    swal({
+                        title: 'Upss!',
+                        text: 'Przepraszam, coś poszło nie tak. Spróbuj proszę później.',
+                        icon: 'warning'
+                    })
                     console.log(err)
             })
         }

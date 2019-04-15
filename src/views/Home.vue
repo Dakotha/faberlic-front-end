@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '../axios'
 import validator from 'validator'
 import swal from 'sweetalert'
 
@@ -87,17 +87,30 @@ export default {
     methods: {
         onNewsletter() {
             if (!validator.isEmail(this.newsletter)) {
-                swal('Czy jesteś pewna?', 'Wygląda na to, że podałaś niewłaściwy adres email.', 'warning')
+                swal({
+                    title: 'Uwaga!',
+                    text: 'Wygląda na to, że podałaś niewłaściwy adres email.',
+                    icon: 'info'
+                })
 
                 return false
             }
             
             axios.post('/newsletter', { email: this.newsletter })
                 .then(() => {
-                    swal('Dziękuję!', 'Zapisałam Twój adres email.', 'success');
+                    swal({
+                        title: 'Dziękuję!',
+                        text: 'Zapisałam Twój adres email.',
+                        icon: 'success',
+                        timer: 3000
+                    });
                 })
                 .catch(err => {
-                    swal('Upss', 'Newsletter nie działa. Spróbuj proszę później.', 'warning')
+                    swal({
+                        title: 'Upss, Newsletter nie działa. Spróbuj proszę później.',
+                        icon: 'warning',
+                        timer: 3000
+                    })
                     console.log(err)
                 })
         }
@@ -290,7 +303,15 @@ export default {
 
         button {
             padding: 1rem 2rem;
+            height: 5rem;
+            border: 1px solid #aaa;
+            background-color: #fff;
             cursor: pointer;
+            outline: none;
+
+            &:hover {
+                background-color: #eee;
+            }
         }
     }
 }
@@ -306,6 +327,11 @@ export default {
         width: 25rem;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .newsletter__form input {
+        width: 20rem;
+    }
+}
 // End of Newsletter section
 </style>
-

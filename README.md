@@ -1,4 +1,5 @@
-# faberlic-front-end
+# Faberlic-front-end
+Front-end aplikacji wspomagającej proces zamawiania produktów u konsultantki Faberlic.
 
 ## Project setup
 ```
@@ -15,15 +16,5 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+You need to rename axios.js.example file to axios.js and edit it. Just provide your own server address.
