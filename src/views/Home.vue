@@ -108,7 +108,8 @@ export default {
                 })
                 .catch(err => {
                     swal({
-                        title: 'Upss, Newsletter nie działa. Spróbuj proszę później.',
+                        title: 'Upss!',
+                        text: 'Newsletter nie działa. Spróbuj proszę później.',
                         icon: 'warning',
                         timer: 3000
                     })
