@@ -144,6 +144,12 @@ export default {
         background-color: rgba(0, 0, 0, .8);
     }
 }
+
+@media screen and (max-width: 768px) {
+    .order {
+        height: 20rem;
+    }
+}
 // End of Order section
 
 
