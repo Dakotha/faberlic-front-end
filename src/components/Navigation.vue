@@ -9,7 +9,7 @@
 
             <div class="navigation-top__menu">
                 <router-link to="/">Strona główna</router-link>
-                <router-link to="#newsletter">Newsletter</router-link>
+                <!-- <router-link to="#newsletter">Newsletter</router-link> -->
                 <router-link to="/zamowienie">Złóż zamówienie</router-link>
             </div>
         </nav>
