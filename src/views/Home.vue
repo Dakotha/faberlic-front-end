@@ -309,9 +309,11 @@ export default {
         }
 
         button {
+            margin-left: 1rem;
             padding: 1rem 2rem;
             height: 5rem;
             border: 1px solid #aaa;
+            border-radius: .5rem;
             background-color: #fff;
             cursor: pointer;
             outline: none;
