@@ -1,6 +1,7 @@
 <template>
     <footer>
         <p>Copyright &copy; {{ getFullYear() }} Faberlic Zenobia Bednarowicz</p>
+        <a href="/Polityka_prywatnosci.pdf" target="_blank">Polityka prywatności</a>
     </footer>
 </template>
 
@@ -18,6 +19,7 @@ export default {
 <style lang="scss">
 footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 6rem;
@@ -27,6 +29,10 @@ footer {
 
     p {
         text-align: center;
+    }
+
+    a {
+        color: #666666;
     }
 }
 </style>
