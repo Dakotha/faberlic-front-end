@@ -5,6 +5,7 @@ Front-end aplikacji wspomagającej proces zamawiania produktów u konsultantki F
 ```
 npm install
 ```
+You need to rename axios.js.example file to axios.js and edit it. Just provide your own server address.
 
 ### Compiles and hot-reloads for development
 ```
@@ -15,6 +16,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Customize configuration
-You need to rename axios.js.example file to axios.js and edit it. Just provide your own server address.
